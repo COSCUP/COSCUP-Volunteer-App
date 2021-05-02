@@ -5,11 +5,9 @@ class Helper {
 
   static Helper _instance;
 
+  // ignore: prefer_constructors_over_static_methods
   static Helper get instance {
-    if (_instance == null) {
-      _instance = Helper();
-    }
-    return _instance;
+    return _instance ??= Helper();
   }
 
   Helper() {
