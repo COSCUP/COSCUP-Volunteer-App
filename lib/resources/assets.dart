@@ -1,9 +1,9 @@
 class ImageAssets {
-  static const basePath = 'assets/images';
+  static const String basePath = 'assets/images';
 
-  static const coscup = '$basePath/coscup.png';
+  static const String coscup = '$basePath/coscup.png';
 }
 
 class FileAssets {
-  static const basePath = 'assets';
+  static const String basePath = 'assets';
 }

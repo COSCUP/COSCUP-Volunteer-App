@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({
+  const HomePage({
     Key key,
   }) : super(key: key);
 
@@ -14,9 +14,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('COSCUP Volunteer App'),
+        title: const Text('COSCUP Volunteer App'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('COSCUP'),
       ),
     );

@@ -1,3 +1,3 @@
 class Constants {
-  static const EXAMPLE = "example";
+  static const String example = 'example';
 }
