@@ -4,11 +4,11 @@ import 'package:flutter/widgets.dart';
 /// Copy from https://github.com/appdev/FlutterToast
 /// Source Code https://github.com/appdev/FlutterToast/blob/4d446c80a1807094a3e10c8293e4b7f3c6429f9d/lib/toast.dart
 class Toast {
-  static final int lengthShort = 1;
-  static final int lengthLong = 2;
-  static final int bottom = 0;
-  static final int center = 1;
-  static final int top = 2;
+  static const int lengthShort = 1;
+  static const int lengthLong = 2;
+  static const int bottom = 0;
+  static const int center = 1;
+  static const int top = 2;
 
   static void show(
     String msg,
@@ -16,7 +16,7 @@ class Toast {
     int duration = 1,
     int gravity = 0,
     Color backgroundColor = const Color(0xAA000000),
-    textStyle = const TextStyle(fontSize: 15, color: Colors.white),
+    TextStyle textStyle = const TextStyle(fontSize: 15, color: Colors.white),
     double backgroundRadius = 20,
     bool rootNavigator,
     Border border,
@@ -49,6 +49,7 @@ class ToastView {
   static OverlayEntry _overlayEntry;
   static bool _isVisible = false;
 
+  // ignore: avoid_void_async
   static void createView(
     String msg,
     BuildContext context,
@@ -58,13 +59,14 @@ class ToastView {
     TextStyle textStyle,
     double backgroundRadius,
     Border border,
+    // ignore: avoid_positional_boolean_parameters
     bool rootNavigator,
   ) async {
     overlayState = Overlay.of(context, rootOverlay: rootNavigator ?? false);
 
     _overlayEntry = OverlayEntry(
       builder: (BuildContext context) => ToastWidget(
-          widget: Container(
+          widget: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Container(
               alignment: Alignment.center,
@@ -75,8 +77,8 @@ class ToastView {
                   borderRadius: BorderRadius.circular(backgroundRadius),
                   border: border,
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
                 child: Text(msg ?? '', softWrap: true, style: textStyle),
               ),
             ),
@@ -85,11 +87,12 @@ class ToastView {
     );
     _isVisible = true;
     overlayState?.insert(_overlayEntry);
+    // ignore: always_specify_types
     await Future.delayed(Duration(seconds: duration));
     dismiss();
   }
 
-  static dismiss() async {
+  static void dismiss() {
     if (!_isVisible) {
       return;
     }
@@ -99,7 +102,7 @@ class ToastView {
 }
 
 class ToastWidget extends StatelessWidget {
-  ToastWidget({
+  const ToastWidget({
     Key key,
     @required this.widget,
     @required this.gravity,
