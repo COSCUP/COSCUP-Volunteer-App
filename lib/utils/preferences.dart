@@ -19,7 +19,7 @@ class Preferences {
       Platform.isLinux ||
       Platform.isWindows;
 
-  static init({
+  static Future<SharedPreferences> init({
     @required encrypt.Key key,
     @required encrypt.IV iv,
   }) async {
@@ -33,9 +33,10 @@ class Preferences {
       );
       Preferences.iv = iv;
     }
+    return prefs;
   }
 
-  static Future<Null> setString(String key, String data) async {
+  static Future<void> setString(String key, String data) async {
     await prefs?.setString(key, data);
   }
 
@@ -43,7 +44,7 @@ class Preferences {
     return prefs?.getString(key) ?? defaultValue;
   }
 
-  static Future<Null> setStringSecurity(String key, String data) async {
+  static Future<void> setStringSecurity(String key, String data) async {
     await prefs?.setString(
       key,
       encrypter.encrypt(data, iv: iv).base64,
@@ -51,14 +52,15 @@ class Preferences {
   }
 
   static String getStringSecurity(String key, String defaultValue) {
-    String data = prefs?.getString(key) ?? '';
-    if (data == '')
+    final String data = prefs?.getString(key) ?? '';
+    if (data == '') {
       return defaultValue;
-    else
+    } else {
       return encrypter.decrypt64(data, iv: iv);
+    }
   }
 
-  static Future<Null> setInt(String key, int data) async {
+  static Future<void> setInt(String key, int data) async {
     await prefs?.setInt(key, data);
   }
 
@@ -66,7 +68,7 @@ class Preferences {
     return prefs?.getInt(key) ?? defaultValue;
   }
 
-  static Future<Null> setDouble(String key, double data) async {
+  static Future<void> setDouble(String key, double data) async {
     await prefs?.setDouble(key, data);
   }
 
@@ -74,15 +76,17 @@ class Preferences {
     return prefs?.getDouble(key) ?? defaultValue;
   }
 
-  static Future<Null> setBool(String key, bool data) async {
+  // ignore: avoid_positional_boolean_parameters
+  static Future<void> setBool(String key, bool data) async {
     await prefs?.setBool(key, data);
   }
 
+  // ignore: avoid_positional_boolean_parameters
   static bool getBool(String key, bool defaultValue) {
     return prefs?.getBool(key) ?? defaultValue;
   }
 
-  static Future<Null> setStringList(String key, List<String> data) async {
+  static Future<void> setStringList(String key, List<String> data) async {
     await prefs?.setStringList(key, data);
   }
 
