@@ -1,16 +1,24 @@
-# volunteer_app
+# COSCUP Volunteer App
 
-A new Flutter project.
+ 提供 COSCUP 志工使用的 App，使用 [Flutter](https://flutter.dev) 開發
 
-## Getting Started
+## 支援平台
+  - Android
+  - iOS
 
-This project is a starting point for a Flutter application.
+## 開發環境
+ - Flutter v2.0.6 Stable Chanel
+ - Android Platform android-30, build-tools 30.0.3
+ - Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6915495)
+ - Xcode 12.4, Build version 12D4e
+ - CocoaPods version 1.10.1
 
-A few resources to get you started if this is your first Flutter project:
+## 如何使用
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+安裝好 Flutter 環境與對應原生環境後，切換至本專案執行
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+建議使用 release mode 或 profile mode 執行較接近實際運作
+
+```bash
+ $ flutter run --release
+```
